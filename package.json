@@ -1,0 +1,21 @@
+{
+  "name": "tinyclone",
+  "version": "1.0.0",
+  "description": "Clon de TinyURL para el proyecto de backend G7",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tinyurl",
+    "nodejs",
+    "express",
+    "ejs",
+    "postgresql"
+  ],
+  "author": "Pedro A. González",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
