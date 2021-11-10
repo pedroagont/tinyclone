@@ -4,7 +4,8 @@
   "description": "Clon de TinyURL para el proyecto de backend G7",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "tinyurl",
