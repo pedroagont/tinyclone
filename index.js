@@ -49,17 +49,19 @@ app.get('/u/:id', (req, res) => {
 });
 
 // API POST AUTH ENDPOINTS
-app.post('/api/v1/register', (req, res) => {
-  res.status(201).send({ message: 'POST a /api/v1/register' });
+app.post('/api/v1/auth/register', (req, res) => {
+  const userID = generateRandomString();
+  res.status(201).send({ message: 'POST a /api/v1/register', userID });
 });
 
-app.post('/api/v1/login', (req, res) => {
+app.post('/api/v1/auth/login', (req, res) => {
   res.status(200).send({ message: 'POST a /api/v1/login' });
 });
 
 // API CRUD URLS ENDPOINTS
 app.post('/api/v1/urls', (req, res) => {
-  res.status(201).send({ message: 'POST a /api/v1/urls' });
+  const urlID = generateRandomString();
+  res.status(201).send({ message: 'POST a /api/v1/urls', urlID });
 });
 
 app.get('/api/v1/urls', (req, res) => {
@@ -77,6 +79,19 @@ app.put('/api/v1/urls/:id', (req, res) => {
 app.delete('/api/v1/urls/:id', (req, res) => {
   res.status(204).send();
 });
+
+const generateRandomString = () => {
+  const characters =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let randomString = '';
+
+  for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomString += characters[randomIndex];
+  }
+
+  return randomString;
+};
 
 // LISTENER
 app.listen(PORT, () =>
