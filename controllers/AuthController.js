@@ -1,5 +1,4 @@
 const { generateRandomString } = require('../utils');
-const cookieSession = require('cookie-session')
 const db = require('../db');
 
  //modelo
@@ -7,7 +6,7 @@ const db = require('../db');
   const user = await db
     .select('*')
     .from('users')
-    .where({ email: email, is_active: true })
+    .where({ email: email, isActive: true })
     .then(result => result[0]);
 
   if (!user) {
@@ -21,7 +20,7 @@ const register = (req, res) => {
   res.status(201).send({ message: 'POST a /api/v1/register', userID });
 };
 
-const login = async (req, res) => {
+const login = (req, res) => {
   // Desestructuramos email y password del body
 const { email, password } = req.body;
 
@@ -30,21 +29,21 @@ if (!email || !password) {
   return res.status(400).send({ message: 'Ingresar email y password' });
 }
 
-// Buscamos el usuario en la base de datos con su email
-const user = await getUserByEmail(email);
-
-// Si el usuario no existe retornamos con un mensaje de error
-if (!user) {
-  return res.status(404).send({ message: 'El usuario no existe' });
-}
-
-// Si los passwords no coinciden retornamos con un mensaje de error
-if (user.password !== password) {
-  return res.status(400).send({ message: 'Password incorrecto' });
-}
+// // Buscamos el usuario en la base de datos con su email
+// const user = await getUserByEmail(email);
+//
+// // Si el usuario no existe retornamos con un mensaje de error
+// if (!user) {
+//   return res.status(404).send({ message: 'El usuario no existe' });
+// }
+//
+// // Si los passwords no coinciden retornamos con un mensaje de error
+// if (user.password !== password) {
+//   return res.status(400).send({ message: 'Password incorrecto' });
+// }
 
 // En caso que todas las validaciones hayan sido satisfactorias, generamos una cookie con el id del usuario
-req.session.userID = user.userID;
+req.session.userID = email;
 
 return res
   .status(200)
