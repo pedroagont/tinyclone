@@ -13,6 +13,29 @@
   <%- include('partials/_header'); %>
   
   <h1>Hola desde mis urls! 👋</h1>
+  <table class="table table-hover">
+    <thead class="primary">
+      <tr>
+          <th scope="col">Short url</th>
+          <th scope="col">Long url</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% urls.forEach(url => { %>
+        <tr>
+          <td><%= url.urlID %></td>
+          <td><%= url.longURL %></td>
+          <td><button type="button" class="btn btn-warning">Edit</button></td>
+          <td><button type="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+      <% }); %>
+
+
+    </tbody>
+  </table>
   
   <!-- BOOTSTRAP BUNDLE JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
