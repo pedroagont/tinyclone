@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const routes = require('./routes');
 const db = require('./db');
 console.log('DB', db.connection().client.connectionSettings);
 
@@ -17,81 +18,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 
-// GET HOME ENDPOINT
-app.get('/', (req, res) => {
-  return res.render('index');
-});
-
-// GET RENDER AUTH ENDPOINTS
-app.get('/register', (req, res) => {
-  return res.render('register');
-});
-
-app.get('/login', (req, res) => {
-  return res.render('login');
-});
-
-// GET RENDER URLS ENDPOINTS
-app.get('/urls', (req, res) => {
-  return res.render('my-urls');
-});
-
-app.get('/urls/new', (req, res) => {
-  return res.render('new-url');
-});
-
-app.get('/urls/:id', (req, res) => {
-  return res.render('url');
-});
-
-app.get('/u/:id', (req, res) => {
-  return res.status(200).send({ message: 'Redirigiendo' });
-});
-
-// API POST AUTH ENDPOINTS
-app.post('/api/v1/auth/register', (req, res) => {
-  const userID = generateRandomString();
-  res.status(201).send({ message: 'POST a /api/v1/register', userID });
-});
-
-app.post('/api/v1/auth/login', (req, res) => {
-  res.status(200).send({ message: 'POST a /api/v1/login' });
-});
-
-// API CRUD URLS ENDPOINTS
-app.post('/api/v1/urls', (req, res) => {
-  const urlID = generateRandomString();
-  res.status(201).send({ message: 'POST a /api/v1/urls', urlID });
-});
-
-app.get('/api/v1/urls', (req, res) => {
-  res.status(200).send({ message: 'GET a /api/v1/urls' });
-});
-
-app.get('/api/v1/urls/:id', (req, res) => {
-  res.status(200).send({ message: 'GET a /api/v1/urls/:id' });
-});
-
-app.put('/api/v1/urls/:id', (req, res) => {
-  res.status(200).send({ message: 'PUT a /api/v1/urls/:id' });
-});
-
-app.delete('/api/v1/urls/:id', (req, res) => {
-  res.status(204).send();
-});
-
-const generateRandomString = () => {
-  const characters =
-    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let randomString = '';
-
-  for (let i = 0; i < 6; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    randomString += characters[randomIndex];
-  }
-
-  return randomString;
-};
+app.use(routes);
 
 // LISTENER
 app.listen(PORT, () =>
