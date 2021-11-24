@@ -12,28 +12,26 @@
 <body>
   <%- include('partials/_header'); %>
   
-  <h1>Hola desde register! 👋</h1>
-
-  <form action="/api/v1/auth/register" method="POST" class="container">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Confirm password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="container m-5">
+    <h1 class="display-4 text-center">Bienvenido a TinyClone! 👋</h1>
+    
+    <form action="/api/v1/auth/register" method="POST" class="container mt-4" style="max-width:500px">
+      <div class="mb-3">
+        <label for="inputEmail" class="form-label">Correo</label>
+        <input name="email" type="email" class="form-control" id="inputEmail">
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword">
+      </div>
+      <div class="mb-3">
+        <label for="inputConfirmPassword" class="form-label">Confirma tu password</label>
+        <input type="password" class="form-control" id="inputConfirmPassword">
+      </div>
+      <button type="submit" class="btn btn-primary w-100 p-2">Registrarme</button>
+    </form>
+  </div>
+  
 
 
   
