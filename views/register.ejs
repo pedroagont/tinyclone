@@ -18,15 +18,15 @@
     <form action="/api/v1/auth/register" method="POST" class="container mt-4" style="max-width:500px">
       <div class="mb-3">
         <label for="inputEmail" class="form-label">Correo</label>
-        <input name="email" type="email" class="form-control" id="inputEmail">
+        <input name="email" type="email" class="form-control" id="inputEmail" placeholder="tucorreo@tudominio.com" autocomplete="off">
       </div>
       <div class="mb-3">
         <label for="inputPassword" class="form-label">Password</label>
-        <input type="password" class="form-control" id="inputPassword">
+        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Passw0rd123!" autocomplete="new-password">
       </div>
       <div class="mb-3">
         <label for="inputConfirmPassword" class="form-label">Confirma tu password</label>
-        <input type="password" class="form-control" id="inputConfirmPassword">
+        <input name="confirmPassword" type="password" class="form-control" id="inputConfirmPassword" placeholder="Passw0rd123!" autocomplete="off">
       </div>
       <button type="submit" class="btn btn-primary w-100 p-2">Registrarme</button>
     </form>

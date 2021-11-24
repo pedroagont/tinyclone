@@ -11,31 +11,24 @@
 </head>
 <body>
   <%- include('partials/_header'); %>
+  
+  <div class="container m-5">
+    <h1 class="display-4 text-center">Hola desde URL! 👋</h1>
+    
+    <div class="my-4">
+      <h1 class="display-6 text-center">TinyURL:</h1>
+      <h1 class="display-6 text-center">URL original:</h1>
+    </div>
 
-  <h1>Hola desde URL! 👋</h1>
-  <table class="table table-bordered">
-    <thead class="primary">
-      <tr>
-        <th scope="col">Short url</th>
-        <th scope="col">Long url</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>www.shorturl.com</td>
-        <td>www.longurl.com</td>
-    </tbody>
-  </table>
-  <form class="row g-3 needs-validation container" novalidate>
-    <div class="col-md-4 position-relative">
-      <label for="validationTooltip01" class="form-label">Edit url</label>
-      <input type="text" class="form-control" id="validationTooltip01" value="Put your url" required>
-    </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit</button>
-    </div>
-  </form>
+    <form action="/api/v1/urls/qwe123?_method=PUT" method="POST" class="container mt-4" style="max-width:500px">
+      <div class="mb-3">
+        <label for="inputLongURL" class="form-label">Edita tu URL</label>
+        <input name="longURL" type="text" class="form-control" id="inputLongURL" placeholder="https://google.com" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary w-100 p-2">Editar URL</button>
+    </form>
+  </div>
+
   
   <!-- BOOTSTRAP BUNDLE JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
