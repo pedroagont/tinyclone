@@ -22,8 +22,8 @@ const register = (req, res) => {
     return res.redirect('/urls');
   }
 
-  const userID = generateRandomString();
-  res.status(201).send({ message: 'POST a /api/v1/register', userID });
+  const newUserID = generateRandomString();
+  res.status(201).send({ message: 'POST a /api/v1/register', newUserID });
 };
 
 const login = async (req, res) => {
@@ -72,7 +72,7 @@ const logout = (req, res) => {
   // Validar si el usuario ya inició sesión y redirigir a /login
   const { userID } = req.session;
   if (!userID) {
-    return res.redirect('/urls');
+    return res.redirect('/login');
   }
   // Para eliminar cookies le asignamos el valor null al objeto session
   req.session = null;
