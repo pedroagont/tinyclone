@@ -1,13 +1,13 @@
 const { celebrate, Joi, Segments } = require('celebrate');
 
-const longurlValidator = celebrate({
+const UrlsValidator = celebrate({
   [Segments.BODY]: Joi.object().keys({
     longURL: Joi.string()
       .regex(
-        /^((http?):\/\/)?[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/
+        /^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
       )
       .required()
   })
 });
 
-module.exports = { longurlValidator };
+module.exports = UrlsValidator;
