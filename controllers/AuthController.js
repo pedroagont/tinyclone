@@ -1,8 +1,8 @@
 const { generateRandomString } = require('../utils');
 const db = require('../db');
 
- //modelo
- const getUserByEmail = async id => {
+// MODELO
+const getUserByEmail = async email => {
   const user = await db
     .select('*')
     .from('users')
@@ -16,41 +16,64 @@ const db = require('../db');
 };
 
 const register = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /urls
+  const { userID } = req.session;
+  if (userID) {
+    return res.redirect('/urls');
+  }
+
   const userID = generateRandomString();
   res.status(201).send({ message: 'POST a /api/v1/register', userID });
 };
 
-const login = (req, res) => {
+const login = async (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (userID) {
+    return res.redirect('/urls');
+  }
+
   // Desestructuramos email y password del body
-const { email, password } = req.body;
+  const { email, password } = req.body;
 
-// Si email o password no existen retornamos con un mensaje de error
-if (!email || !password) {
-  return res.status(400).send({ message: 'Ingresar email y password' });
-}
+  // Si email o password no existen retornamos con un mensaje de error
+  if (!email || !password) {
+    return res.status(400).send({ message: 'Ingresar email y password' });
+  }
 
-// // Buscamos el usuario en la base de datos con su email
-// const user = await getUserByEmail(email);
-//
-// // Si el usuario no existe retornamos con un mensaje de error
-// if (!user) {
-//   return res.status(404).send({ message: 'El usuario no existe' });
-// }
-//
-// // Si los passwords no coinciden retornamos con un mensaje de error
-// if (user.password !== password) {
-//   return res.status(400).send({ message: 'Password incorrecto' });
-// }
+  try {
+    // Buscamos el usuario en la base de datos con su email
+    const user = await getUserByEmail(email);
 
-// En caso que todas las validaciones hayan sido satisfactorias, generamos una cookie con el id del usuario
-req.session.userID = email;
+    // Si el usuario no existe retornamos con un mensaje de error
+    if (!user) {
+      return res.status(404).send({ message: 'El usuario no existe' });
+    }
 
-return res
-  .status(200)
-  .send({ message: 'Hola desde login!', cookies: req.session });
+    // Si los passwords no coinciden retornamos con un mensaje de error
+    if (user.password !== password) {
+      return res.status(400).send({ message: 'Password incorrecto' });
+    }
+
+    // En caso que todas las validaciones hayan sido satisfactorias, generamos una cookie con el id del usuario
+    req.session.userID = user.userID;
+
+    return res
+      .status(200)
+      .send({ message: 'Bienvenido!', cookies: req.session });
+  } catch (error) {
+    return res
+      .status(400)
+      .send({ message: 'Error al iniciar sesión', error: error.message });
+  }
 };
 
 const logout = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/urls');
+  }
   // Para eliminar cookies le asignamos el valor null al objeto session
   req.session = null;
 
