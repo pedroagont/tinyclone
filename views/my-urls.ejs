@@ -17,10 +17,10 @@
     <table class="table table-hover mx-auto" style="max-width: 85%">
       <thead class="primary text-center">
         <tr>
-          <th scope="col">Short url</th>
-          <th scope="col">Long url</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
+          <th scope="col">TinyURL</th>
+          <th scope="col">URL Original</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Borrar</th>
         </tr>
       </thead>
       <tbody>
@@ -31,12 +31,12 @@
             <td class="text-truncate" style="max-width: 150px;"><%= url.longURL %></td>
             <td class="text-center">
               <form action="/urls/<%= url.urlID %>" method="GET">
-                <button type="submit" class="btn btn-warning">Edit</button>
+                <button type="submit" class="btn btn-warning">Editar</button>
               </form>
             </td>
             <td class="text-center">
               <form action="/api/v1/urls/<%= url.urlID %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">Borrar</button>
               </form>
             </td>
           </tr>
