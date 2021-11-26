@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const { errors } = require('celebrate');
 const cookieSession = require('cookie-session');
 const methodOverride = require('method-override');
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 8080;
 
 const routes = require('./routes');
 const db = require('./db');
+
 console.log('DB', db.connection().client.connectionSettings);
 
 // MIDDLEWARES
@@ -31,6 +33,7 @@ app.use(
 );
 
 app.use(routes);
+app.use(errors());
 
 // LISTENER
 app.listen(PORT, () =>

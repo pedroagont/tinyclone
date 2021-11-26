@@ -7,7 +7,9 @@ const createUrl = (req, res) => {
     return res.redirect('/login');
   }
 
+  const { longURL } = req.body;
   const urlID = generateRandomString();
+  
   return res.redirect('/urls/' + urlID);
 };
 
