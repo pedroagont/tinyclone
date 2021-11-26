@@ -9,7 +9,7 @@ const register = (req, res) => {
   if (userID) {
     return res.redirect('/urls');
   }
-  
+
   const templateVars = { user: null }; // Usuario sin sesión
   return res.render('register', templateVars);
 };
@@ -20,7 +20,7 @@ const login = (req, res) => {
   if (userID) {
     return res.redirect('/urls');
   }
-  
+
   const templateVars = { user: null }; // Usuario sin sesión
   return res.render('login', templateVars);
 };
@@ -31,7 +31,7 @@ const myUrls = (req, res) => {
   if (!userID) {
     return res.redirect('/login');
   }
-  
+
   const urls = [
     {
       urlID: 'a2Er43',
@@ -59,14 +59,14 @@ const newUrl = (req, res) => {
   if (!userID) {
     return res.redirect('/login');
   }
-  
+
   const user = {
     email: 'user@example.com',
     password: 'Passw0rd123!'
   };
 
   const templateVars = { user }; // Usuario con inicio de sesión
-  
+
   return res.render('new-url', templateVars);
 };
 
@@ -81,14 +81,14 @@ const showUrl = (req, res) => {
     email: 'user@example.com',
     password: 'Passw0rd123!'
   };
-  
+
   const url = {
     urlID: 'r5t6y7',
-    longURL: 'http://google.com',
-  }
+    longURL: 'http://google.com'
+  };
 
   const templateVars = { user, url }; // Usuario con inicio de sesión
-  
+
   return res.render('url', templateVars);
 };
 

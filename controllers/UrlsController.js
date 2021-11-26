@@ -8,7 +8,7 @@ const createUrl = (req, res) => {
   }
 
   const urlID = generateRandomString();
-  res.status(201).send({ message: 'POST a /api/v1/urls', urlID });
+  return res.redirect('/urls/' + urlID);
 };
 
 const getUrls = (req, res) => {
@@ -38,7 +38,7 @@ const updateUrl = (req, res) => {
     return res.redirect('/login');
   }
 
-  res.status(200).send({ message: 'PUT a /api/v1/urls/:id' });
+  return res.redirect('/urls/qwe123');
 };
 
 const deleteUrl = (req, res) => {
@@ -48,7 +48,7 @@ const deleteUrl = (req, res) => {
     return res.redirect('/login');
   }
 
-  res.status(204).send();
+  return res.redirect('/urls');
 };
 
 module.exports = { createUrl, getUrls, findUrl, updateUrl, deleteUrl };

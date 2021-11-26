@@ -23,7 +23,7 @@ const register = (req, res) => {
   }
 
   const newUserID = generateRandomString();
-  res.status(201).send({ message: 'POST a /api/v1/register', newUserID });
+  return res.redirect('/login');
 };
 
 const login = async (req, res) => {
@@ -58,9 +58,7 @@ const login = async (req, res) => {
     // En caso que todas las validaciones hayan sido satisfactorias, generamos una cookie con el id del usuario
     req.session.userID = user.userID;
 
-    return res
-      .status(200)
-      .send({ message: 'Bienvenido!', cookies: req.session });
+    return res.redirect('/urls');
   } catch (error) {
     return res
       .status(400)
@@ -77,9 +75,7 @@ const logout = (req, res) => {
   // Para eliminar cookies le asignamos el valor null al objeto session
   req.session = null;
 
-  return res
-    .status(200)
-    .send({ message: 'Hola desde logout!', cookies: req.session });
+  return res.redirect('/login');
 };
 
 module.exports = { register, login, logout };
