@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 const methodOverride = require('method-override');
 
 const app = express();
@@ -19,6 +20,15 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['tinyclone', 'Code', 'G7'],
+
+    // Cookie Options
+    maxAge: 10 * 60 * 1000 // Se recomienda entre 10-15 min de duración para evitar vulnerabilidades
+  })
+);
 
 app.use(routes);
 

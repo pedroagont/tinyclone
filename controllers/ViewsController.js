@@ -4,16 +4,34 @@ const home = (req, res) => {
 };
 
 const register = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /urls
+  const { userID } = req.session;
+  if (userID) {
+    return res.redirect('/urls');
+  }
+
   const templateVars = { user: null }; // Usuario sin sesión
   return res.render('register', templateVars);
 };
 
 const login = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /urls
+  const { userID } = req.session;
+  if (userID) {
+    return res.redirect('/urls');
+  }
+
   const templateVars = { user: null }; // Usuario sin sesión
   return res.render('login', templateVars);
 };
 
 const myUrls = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
   const urls = [
     {
       urlID: 'a2Er43',
@@ -36,26 +54,41 @@ const myUrls = (req, res) => {
 };
 
 const newUrl = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
   const user = {
     email: 'user@example.com',
     password: 'Passw0rd123!'
   };
 
   const templateVars = { user }; // Usuario con inicio de sesión
-  // const templateVars = { urls, user: null }; // Usuario sin sesión
-  //
+
   return res.render('new-url', templateVars);
 };
 
 const showUrl = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
   const user = {
     email: 'user@example.com',
     password: 'Passw0rd123!'
   };
 
-  const templateVars = { user }; // Usuario con inicio de sesión
-  // const templateVars = { urls, user: null }; // Usuario sin sesión
-  //
+  const url = {
+    urlID: 'r5t6y7',
+    longURL: 'http://google.com'
+  };
+
+  const templateVars = { user, url }; // Usuario con inicio de sesión
+
   return res.render('url', templateVars);
 };
 
