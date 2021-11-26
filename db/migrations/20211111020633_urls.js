@@ -7,7 +7,7 @@ exports.up = function(knex) {
       .unique()
       .primary();
     table
-      .string('longURL', 6)
+      .string('longURL', 50)
       .notNullable()
       .unique();
     table.string('userID', 6).notNullable();
