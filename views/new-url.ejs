@@ -12,7 +12,16 @@
 <body>
   <%- include('partials/_header'); %>
   
-  <h1>Hola desde new-url! 👋</h1>
+  <main class="container my-4">
+    <h1 class="display-4 text-center">Acorta una URL 🩳</h1>
+    <form action="/api/v1/urls" method="POST" class="container mt-4" style="max-width:500px">
+      <div class="mb-3">
+        <label for="inputLongURL" class="form-label">Ingresa tu url para acortar</label>
+        <input name="longURL" type="text" class="form-control" id="inputLongURL" placeholder="https://google.com" autocomplete="off" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 p-2">Acortar URL</button>
+    </form>
+  </main>
   
   <!-- BOOTSTRAP BUNDLE JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

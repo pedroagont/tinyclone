@@ -1,25 +1,56 @@
 const { generateRandomString } = require('../utils');
 
 const createUrl = (req, res) => {
-  const urlID = generateRandomString();
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
   const { longURL } = req.body;
-  res.status(201).send({ message: 'POST a /api/v1/urls', longURL });
+  const urlID = generateRandomString();
+  
+  return res.redirect('/urls/' + urlID);
 };
 
 const getUrls = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
   res.status(200).send({ message: 'GET a /api/v1/urls' });
 };
 
 const findUrl = (req, res) => {
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
   res.status(200).send({ message: 'GET a /api/v1/urls/:id' });
 };
 
 const updateUrl = (req, res) => {
-  res.status(200).send({ message: 'PUT a /api/v1/urls/:id' });
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
+  return res.redirect('/urls/qwe123');
 };
 
 const deleteUrl = (req, res) => {
-  res.status(204).send();
+  // Validar si el usuario ya inició sesión y redirigir a /login
+  const { userID } = req.session;
+  if (!userID) {
+    return res.redirect('/login');
+  }
+
+  return res.redirect('/urls');
 };
 
 module.exports = { createUrl, getUrls, findUrl, updateUrl, deleteUrl };
