@@ -15,14 +15,14 @@
   <main class="container my-4">
     
     <div class="my-4">
-      <h1 class="display-6 text-center">TinyURL:</h1>
-      <h1 class="display-6 text-center">URL original:</h1>
+      <h1 class="display-6 text-center">TinyURL: <%= url.urlID %></h1>
+      <h1 class="display-6 text-center">URL original: <%= url.longURL %></h1>
     </div>
 
-    <form action="/api/v1/urls/qwe123?_method=PUT" method="POST" class="container mt-4" style="max-width:500px">
+    <form action="/api/v1/urls/<%= url.urlID %>?_method=PUT" method="POST" class="container mt-4" style="max-width:500px">
       <div class="mb-3">
         <label for="inputLongURL" class="form-label">Edita tu URL</label>
-        <input name="longURL" type="text" class="form-control" id="inputLongURL" placeholder="https://google.com" autocomplete="off">
+        <input name="longURL" type="text" class="form-control" id="inputLongURL" placeholder="<%= url.longU %>" autocomplete="off" required>
       </div>
       <button type="submit" class="btn btn-primary w-100 p-2">Editar URL</button>
     </form>

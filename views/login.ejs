@@ -18,11 +18,11 @@
     <form action="/api/v1/auth/login" method="POST" class="container mt-4" style="max-width:500px">
       <div class="mb-3">
         <label for="inputEmail" class="form-label">Correo</label>
-        <input name="email" type="email" class="form-control" id="inputEmail" placeholder="tucorreo@tudominio.com" autocomplete="off">
+        <input name="email" type="email" class="form-control" id="inputEmail" placeholder="tucorreo@tudominio.com" autocomplete="off" required>
       </div>
       <div class="mb-3">
         <label for="inputPassword" class="form-label">Password</label>
-        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Passw0rd123!" autocomplete="off">
+        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Passw0rd123!" autocomplete="off" required>
       </div>
       <button type="submit" class="btn btn-primary w-100 p-2">Ingresar</button>
     </form>
