@@ -22,9 +22,13 @@
     <form action="/api/v1/urls/<%= url.urlID %>?_method=PUT" method="POST" class="container mt-4" style="max-width:500px">
       <div class="mb-3">
         <label for="inputLongURL" class="form-label">Edita tu URL</label>
-        <input name="longURL" type="text" class="form-control" id="inputLongURL" placeholder="<%= url.longU %>" autocomplete="off" required>
+        <input name="longURL" type="text" class="form-control" id="inputLongURL" placeholder="<%= url.longURL %>" autocomplete="off" required>
       </div>
       <button type="submit" class="btn btn-primary w-100 p-2">Editar URL</button>
+    </form>
+    
+    <form action="/api/v1/urls/<%= url.urlID %>?_method=DELETE" method="POST"  class="container mt-2" style="max-width:500px">
+      <button type="submit" class="btn btn-danger w-100 p-2">Borrar</button>
     </form>
   </main>
 
