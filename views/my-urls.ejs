@@ -27,8 +27,12 @@
         
         <% urls.forEach(url => { %>
           <tr>
-            <td class="text-center"><%= url.urlID %></td>
-            <td class="text-truncate" style="max-width: 150px;"><%= url.longURL %></td>
+            <td class="text-center">
+              <a href="/u/<%= url.urlID %>"><%= url.urlID %></a>
+            </td>
+            <td class="text-truncate" style="max-width: 150px;">
+              <a href="<%= url.longURL %>"><%= url.longURL %></a>
+            </td>
             <td class="text-center">
               <form action="/urls/<%= url.urlID %>" method="GET">
                 <button type="submit" class="btn btn-warning">Editar</button>
