@@ -8,6 +8,10 @@ const AuthValidator = celebrate({
 
     password: Joi.string()
       .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/)
+      .required(),
+
+    confirmPassword: Joi.string()
+      .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/)
       .required()
   })
 });

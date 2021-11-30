@@ -6,10 +6,7 @@ exports.up = function(knex) {
       .notNullable()
       .unique()
       .primary();
-    table
-      .string('longURL', 50)
-      .notNullable()
-      .unique();
+    table.string('longURL', 200).notNullable();
     table.string('userID', 6).notNullable();
     table.timestamp('createdAt').defaultTo(knex.fn.now());
   });
