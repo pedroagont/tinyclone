@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const { UsersModel } = require('../models');
 const { generateRandomString } = require('../utils');
 
@@ -30,15 +31,17 @@ const register = async (req, res) => {
     }
 
     const newUserID = generateRandomString();
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
     const newUserBody = {
       userID: newUserID,
       email: email,
-      password: password
+      password: hashedPassword
     };
 
     const user = await UsersModel.createUser(newUserBody);
     return res.redirect('/login');
-  } catch (e) {
+  } catch (error) {
     return res
       .status(400)
       .send({ message: 'Error al registrarse', error: error.message });
@@ -62,7 +65,7 @@ const login = async (req, res) => {
       return res.status(404).send({ message: 'El usuario no existe' });
     }
 
-    const passwordsMatch = user.password === password;
+    const passwordsMatch = bcrypt.compareSync(password, user.password);
     if (!passwordsMatch) {
       return res.status(400).send({ message: 'Password incorrecto' });
     }
