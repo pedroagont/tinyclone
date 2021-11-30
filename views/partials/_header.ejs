@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/urls">TinyClone</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if(user){ %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/urls">Mis URLs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/urls/new">Acortar URL</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><%= user.email %></a>
+            </li>
+          </ul>
+          <form action="/api/v1/auth/logout" method="POST">
+            <button class="btn btn-outline-light" type="submit">Cerrar sesión</button>
+          </form>
+        <% } else { %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="btn btn-outline-light" href="/login">Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light ms-2" href="/register">Registro</a>
+            </li>
+          </ul>
+        <% }; %>
+      </div>
+    </div>
+  </nav>
+</header>
