@@ -13,8 +13,6 @@ const PORT = process.env.PORT || 8080;
 const routes = require('./routes');
 const db = require('./db');
 
-console.log('DB', db.connection().client.connectionSettings);
-
 // MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
