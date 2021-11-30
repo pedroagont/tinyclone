@@ -1,6 +1,11 @@
 const home = (req, res) => {
-  const templateVars = { user: null }; // Usuario sin sesión
-  return res.render('index', templateVars);
+  // Validar si el usuario ya inició sesión y redirigir a /urls
+  const { userID } = req.session;
+  if (userID) {
+    return res.redirect('/urls');
+  }
+
+  return res.redirect('/login');
 };
 
 const register = (req, res) => {
