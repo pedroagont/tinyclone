@@ -1,41 +1,39 @@
 const db = require('../db');
 
 const createUrl = body => {
-  return db('users')
+  return db('urls')
     .insert(body)
     .returning('*')
     .then(result => result[0]);
 };
 
-const getUrls = () => {
+const getUrls = id => {
   return db
     .select('*')
-    .from('users')
-    .where({ isActive: true });
+    .from('urls')
+    .where({ userID: id });
 };
 
 const findUrl = id => {
   return db
     .select('*')
-    .from('users')
-    .where({ userID: id, isActive: true })
+    .from('urls')
+    .where({ urlID: id })
     .then(result => result[0]);
 };
 
 const updateUrl = (id, body) => {
-  return db('users')
-    .update({ email: body.email, password: body.password })
-    .where({ userID: id, isActive: true })
+  return db('urls')
+    .update(body)
+    .where({ urlID: id })
     .returning('*')
     .then(result => result[0]);
 };
 
 const deleteUrl = id => {
-  return db('users')
-    .update({ isActive: false })
-    .where({ userID: id })
-    .returning('*')
-    .then(result => result[0]);
+  return db('urls')
+    .where({ urlID: id })
+    .delete();
 };
 
 module.exports = {
