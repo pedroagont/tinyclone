@@ -7,14 +7,15 @@ exports.up = function(knex) {
       .unique()
       .primary();
     table
-      .string('email', 50)
+      .string('email', 80)
       .notNullable()
       .unique();
-    table.string('password', 50).notNullable();
+    table.string('password', 80).notNullable();
     table
       .boolean('isActive')
       .notNullable()
       .defaultTo(true);
+    table.timestamp('createdAt').defaultTo(knex.fn.now());
   });
 };
 
