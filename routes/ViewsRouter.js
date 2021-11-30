@@ -13,7 +13,7 @@ router.get('/login', ViewsController.login);
 // GET RENDER URLS ENDPOINTS
 router.get('/urls', ViewsController.myUrls);
 router.get('/urls/new', ViewsController.newUrl);
-router.get('/urls/:id', ViewsController.showUrl);
-router.get('/u/:id', ViewsController.redirectUrl);
+router.get('/urls/:shortURL', ViewsController.showUrl);
+router.get('/u/:shortURL', ViewsController.redirectUrl);
 
 module.exports = router;

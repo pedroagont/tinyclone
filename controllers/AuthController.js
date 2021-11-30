@@ -30,13 +30,13 @@ const register = async (req, res) => {
     }
 
     const newUserID = generateRandomString();
-    const newUser = {
+    const newUserBody = {
       userID: newUserID,
       email: email,
       password: password
     };
 
-    const user = await UsersModel.createUser(newUser);
+    const user = await UsersModel.createUser(newUserBody);
     return res.redirect('/login');
   } catch (e) {
     return res
