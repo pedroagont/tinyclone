@@ -15,6 +15,14 @@ const db = require('./db');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      'script-src': ["'self'", 'cdn.jsdelivr.net']
+    }
+  })
+);
 app.use(morgan('dev'));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
